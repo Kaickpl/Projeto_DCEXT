@@ -1,6 +1,5 @@
 package Entities;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,19 +9,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Aluno {
+@Entity
+public class Atividade {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int id_aluno;
-    private String nome;
-    private String matricula;
-    private String email;
-    private String telefone;
-    private String senha;
-    private int periodo;
+    private int id;
+    private String tipo;
+    private String categoria;
+    private float pontuacao;
+    private String reforcador;
+    private String status;
+
+
 }
