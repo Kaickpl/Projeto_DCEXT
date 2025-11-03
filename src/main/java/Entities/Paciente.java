@@ -24,4 +24,8 @@ public class Paciente {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idEndereco")
     private Endereco Endereco;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_aluno")
+    private Aluno Aluno;
 }
