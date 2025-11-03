@@ -1,6 +1,6 @@
-package Repository;
+package br.com.dcext.VB_MAPP_Digital.Repository;
 
-import Entities.Endereco;
+import br.com.dcext.VB_MAPP_Digital.Entities.Endereco;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

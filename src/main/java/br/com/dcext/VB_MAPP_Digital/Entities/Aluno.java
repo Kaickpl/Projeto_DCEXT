@@ -1,4 +1,4 @@
-package Entities;
+package br.com.dcext.VB_MAPP_Digital.Entities;
 
 
 import jakarta.persistence.*;
@@ -24,6 +24,6 @@ public class Aluno {
     private String telefone;
     private String senha;
     private int periodo;
-    @OneToMany(mappedBy = "paciente")
+    @OneToMany(mappedBy = "aluno")
     private List<Paciente> paciente;
 }

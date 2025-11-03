@@ -1,4 +1,4 @@
-package Entities;
+package br.com.dcext.VB_MAPP_Digital.Entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

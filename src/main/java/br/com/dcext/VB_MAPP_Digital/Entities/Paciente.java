@@ -1,4 +1,4 @@
-package Entities;
+package br.com.dcext.VB_MAPP_Digital.Entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,10 +22,10 @@ public class Paciente {
     private String genero;
     private String observacoes;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idEndereco")
-    private Endereco Endereco;
+    @JoinColumn(name = "id_Endereco")
+    private Endereco endereco;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_aluno")
-    private Aluno Aluno;
+    private Aluno aluno;
 }
