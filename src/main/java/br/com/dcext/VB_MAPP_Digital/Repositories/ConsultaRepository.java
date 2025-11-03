@@ -1,4 +1,4 @@
-package br.com.dcext.VB_MAPP_Digital.Repository;
+package br.com.dcext.VB_MAPP_Digital.Repositories;
 
 import br.com.dcext.VB_MAPP_Digital.Entities.Consulta;
 import org.springframework.data.jpa.repository.JpaRepository;
