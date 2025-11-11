@@ -19,10 +19,9 @@ public class Atividade {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     private String tipo;
-    private String categoria;
-    private float pontuacao;
+    private CategoriasATV categoria;
+    private float pontuacaoParcial;
     private String reforcador;
     private String status;
-
-
+    private String tentativa;
 }
