@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -24,4 +25,6 @@ public class Consulta {
     private String pontuação_total;
     @OneToOne(mappedBy = "consulta", cascade = CascadeType.ALL)
     private Relatorio relatorio;
+    @OneToOne(mappedBy = "consulta", cascade = CascadeType.ALL)
+    private List<Atividade> atividade;
 }

@@ -15,12 +15,12 @@ public class Atividade {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
+
     private String tipo;
+
     @ManyToOne
     @JoinColumn(name = "idCategoria")
     private CategoriasATV categoria;
-    private float pontuacaoParcial;
-    private String reforcador;
-    private String status;
-    private String tentativa;
+    private String descricao;
+    private String pontuacaoMax;
 }
