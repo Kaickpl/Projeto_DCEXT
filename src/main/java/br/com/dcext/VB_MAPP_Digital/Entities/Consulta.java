@@ -16,10 +16,12 @@ public class Consulta {
     private int id_consulta;
     @ManyToOne
     @JoinColumn(name = "id_aluno")
-    private Aluno id_aluno;
-    @OneToOne(cascade = CascadeType.ALL)
+    private Aluno aluno;
+    @ManyToOne
     @JoinColumn(name = "id_paciente")
-    private Paciente id_paciente;
+    private Paciente paciente;
     private Date data_consulta;
     private String pontuação_total;
+    @OneToOne(mappedBy = "consulta", cascade = CascadeType.ALL)
+    private Relatorio relatorio;
 }
