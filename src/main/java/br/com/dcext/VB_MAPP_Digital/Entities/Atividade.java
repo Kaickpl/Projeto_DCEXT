@@ -1,5 +1,6 @@
 package br.com.dcext.VB_MAPP_Digital.Entities;
 
+import br.com.dcext.VB_MAPP_Digital.Entities.Enums.CategoriasATV;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,8 +19,7 @@ public class Atividade {
 
     private String tipo;
 
-    @ManyToOne
-    @JoinColumn(name = "idCategoria")
+    @Enumerated(EnumType.STRING)
     private CategoriasATV categoria;
     private String reforcador;
     private String status;
