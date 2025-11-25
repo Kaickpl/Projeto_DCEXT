@@ -23,14 +23,9 @@ public class AtividadeRealizada {
     private Atividade atividade;
 
     @ManyToOne
-    private Aluno aluno;
+    @JoinColumn(name = "consulta_id")
+    private Consulta consulta;
 
-    @ManyToOne
-    private Paciente paciente;
-
-    private Float pontuacaoParcial;
-    private String reforcador;
-    private String status;
-    private String tentativa;
+    private Integer pontuacao;
     private LocalDateTime dataExecucao;
 }

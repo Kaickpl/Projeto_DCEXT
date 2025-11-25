@@ -19,23 +19,23 @@ public class PacienteServiceImpl implements PacienteService {
 
 
     @Override
-    public Paciente cadastrarPaciente(PacienteDTOs pacienteDTOs) {
-        if  (pacienteDTOs.getNome() == null || pacienteDTOs.getNome().isBlank()){
-            return  null;
-        }
-        if (pacienteDTOs.getResponsavel() == null || pacienteDTOs.getResponsavel().isBlank()){
-            return  null;
-        }
-        if (pacienteDTOs.getNumeroResponsavel() == null || pacienteDTOs.getNumeroResponsavel().isBlank()){
-            return  null;
-        }
-        if (pacienteDTOs.getDataNascimento() == null || pacienteDTOs.getDataNascimento().isBlank()){
-            return  null;
-        }
-        if (pacienteDTOs.getEndereco() == null){
-            return  null;
-        }
-        Paciente paciente = cadastrarPaciente(pacienteDTOs);
+    public Paciente cadastrarPaciente(Paciente paciente) {
+//        if  (pacienteDTOs.getNome() == null || pacienteDTOs.getNome().isBlank()){
+//            return  null;
+//        }
+//        if (pacienteDTOs.getResponsavel() == null || pacienteDTOs.getResponsavel().isBlank()){
+//            return  null;
+//        }
+//        if (pacienteDTOs.getNumeroResponsavel() == null || pacienteDTOs.getNumeroResponsavel().isBlank()){
+//            return  null;
+//        }
+//        if (pacienteDTOs.getDataNascimento() == null || pacienteDTOs.getDataNascimento().isBlank()){
+//            return  null;
+//        }
+//        if (pacienteDTOs.getEndereco() == null){
+//            return  null;
+//        }
+//        Paciente paciente = cadastrarPaciente(pacienteDTOs);
         return pacienteRepository.save(paciente);
         }
 
@@ -49,6 +49,12 @@ public class PacienteServiceImpl implements PacienteService {
         pacienteRepository.delete(paciente.get());
         return false;
     }
+
+
+    public List<Paciente> listarPacientes(){
+        return pacienteRepository.findAll();
+    }
+
 
     @Override
     public List<Paciente> listarPaciente(String nome) {
@@ -83,7 +89,7 @@ public class PacienteServiceImpl implements PacienteService {
         paciente.setResponsavel(pacienteDTOs.getResponsavel());
         paciente.setNumeroResponsavel(pacienteDTOs.getNumeroResponsavel());
         paciente.setEndereco(pacienteDTOs.getEndereco());
-        paciente.setIdPaciente(pacienteDTOs.getIdPaciente());
+        paciente.setPacienteId(pacienteDTOs.getIdPaciente());
         paciente.setDataNascimento(pacienteDTOs.getDataNascimento());
         paciente.setGenero(pacienteDTOs.getGenero());
         paciente.setObservacoes(pacienteDTOs.getObservacoes());

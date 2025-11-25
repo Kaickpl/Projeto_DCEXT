@@ -40,7 +40,7 @@ public class AlunoServiceImpl implements AlunoService {
 
     public Aluno atualizarAluno(int id, Aluno aluno) {
 
-        Aluno alunoBanco = alunoRepository.findById(aluno.getId_aluno()).orElse(null);
+        Aluno alunoBanco = alunoRepository.findById(aluno.getAlunoId()).orElse(null);
         if (alunoBanco == null) {
             return null;
         }

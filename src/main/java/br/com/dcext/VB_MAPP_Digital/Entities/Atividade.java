@@ -21,6 +21,9 @@ public class Atividade {
     @ManyToOne
     @JoinColumn(name = "idCategoria")
     private CategoriasATV categoria;
+    private String reforcador;
+    private String status;
+    private String tentativa;
     private String descricao;
     private String pontuacaoMax;
 }

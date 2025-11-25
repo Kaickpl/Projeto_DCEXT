@@ -22,7 +22,7 @@ public class PacienteDTOs {
     private String observacoes;
     private Endereco endereco;
     public PacienteDTOs(Paciente paciente) {
-        this.idPaciente = paciente.getIdPaciente();
+        this.idPaciente = paciente.getPacienteId();
         this.nome = paciente.getNome();
         this.responsavel = paciente.getResponsavel();
         this.numeroResponsavel = paciente.getNumeroResponsavel();

@@ -17,7 +17,7 @@ import java.util.List;
 public class Aluno {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int id_aluno;
+    private int alunoId;
     private String nome;
     private String matricula;
     private String email;

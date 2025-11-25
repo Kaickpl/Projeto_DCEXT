@@ -14,7 +14,7 @@ import lombok.Setter;
 public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int idPaciente;
+    private int pacienteId;
     private String nome;
     private String responsavel;
     private String numeroResponsavel;

@@ -18,8 +18,8 @@ public class PacienteController {
     private PacienteService pacienteService;
 
     @PostMapping
-    public ResponseEntity<Paciente> cadastrarPaciente(@RequestBody PacienteDTOs dto) {
-        return ResponseEntity.ok(pacienteService.cadastrarPaciente(dto));
+    public ResponseEntity<Paciente> cadastrarPaciente(@RequestBody Paciente paciente) {
+        return ResponseEntity.ok(pacienteService.cadastrarPaciente(paciente));
     }
 
     @DeleteMapping
@@ -28,8 +28,16 @@ public class PacienteController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Paciente>> listarPaciente(String nome){
-        return ResponseEntity.ok(pacienteService.listarPaciente(nome));
+    public ResponseEntity<List<Paciente>> listarPacientes(){
+        System.out.println("ENTROU");
+        return ResponseEntity.ok(pacienteService.listarPacientes());
+    }
+
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<List<Paciente>> listarPaciente(String id){
+        return ResponseEntity.ok(pacienteService.listarPaciente(id));
     }
 
     @PutMapping
