@@ -28,9 +28,9 @@ public class Consulta {
     @OneToOne(mappedBy = "consulta", cascade = CascadeType.ALL)
     private Relatorio relatorio;
     @OneToMany(mappedBy = "consulta", cascade = CascadeType.ALL)
-    private List<AtividadeRealizada> atividades = new ArrayList<>();
+    private List<ItemAtividadeRealizado> atividades = new ArrayList<>();
 
-    public void adicionarAtividade(AtividadeRealizada realizada) {
+    public void adicionarAtividade(ItemAtividadeRealizado realizada) {
         realizada.setConsulta(this);
         this.atividades.add(realizada);
 
@@ -38,7 +38,7 @@ public class Consulta {
     }
 
     private void recalcularPontuacao() {
-        double total = atividades.stream().mapToDouble(a -> a.getPontuacao()).sum();
+        double total = atividades.stream().mapToDouble(a -> a.getPontuacaoObtida()).sum();
 
         this.pontuacaoParcial = total;
 
