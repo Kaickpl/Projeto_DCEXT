@@ -7,11 +7,15 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RealizarAtividadeDTO {
-    private int atividadeId;
+    private Integer consultaId;
+    private Integer atividadeId;
     private Integer pontuacao;
+    private Integer tentativa;
 
-    public RealizarAtividadeDTO(int atividadeId, Integer pontuacao) {
+    public RealizarAtividadeDTO(Integer atividadeId, Integer pontuacao, Integer tentativa, Integer consultaId) {
         this.atividadeId = atividadeId;
         this.pontuacao = pontuacao;
+        this.tentativa = tentativa;
+        this.consultaId = consultaId;
     }
 }

@@ -4,10 +4,7 @@ package br.com.dcext.VB_MAPP_Digital.Services.impl;
 import br.com.dcext.VB_MAPP_Digital.Entities.*;
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.ConsultaDTO;
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.RealizarAtividadeDTO;
-import br.com.dcext.VB_MAPP_Digital.Repositories.AlunoRepository;
-import br.com.dcext.VB_MAPP_Digital.Repositories.AtividadeRepository;
-import br.com.dcext.VB_MAPP_Digital.Repositories.ConsultaRepository;
-import br.com.dcext.VB_MAPP_Digital.Repositories.PacienteRepository;
+import br.com.dcext.VB_MAPP_Digital.Repositories.*;
 import br.com.dcext.VB_MAPP_Digital.Services.ConsultaService;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +25,10 @@ public class ConsultaServiceImpl implements ConsultaService {
     private PacienteRepository pacienteRepository;
 
     @Autowired
-    private AtividadeRepository atividadeRepository;
+    private ItemAtividadeRepository itemAtividadeRepository;
+
+    @Autowired
+    private ItemAtividadeRealizadoRepository itemAtividadeRealizadoRepository;
 
     @Override
     public Consulta criarConsulta(ConsultaDTO dto) {
@@ -41,6 +41,12 @@ public class ConsultaServiceImpl implements ConsultaService {
         consulta.setPaciente(paciente);
         consulta.setDataConsulta(dto.getData_consulta());
 
+
+        if (!aluno.getPacientes().contains(paciente)){
+            aluno.getPacientes().add(paciente);
+            alunoRepository.save(aluno);
+        }
+
         return consultaRepository.save(consulta);
     }
 
@@ -50,18 +56,22 @@ public class ConsultaServiceImpl implements ConsultaService {
     }
 
     @Override
-    public Consulta realizarAtividade(int consultaId, RealizarAtividadeDTO dto) {
-        Consulta consulta = consultaRepository.findById(consultaId).orElseThrow();
+    public Consulta realizarAtividade(RealizarAtividadeDTO dto) {
+        Consulta consulta = consultaRepository.findById(dto.getConsultaId()).orElseThrow();
 
-        Atividade atividade = atividadeRepository.findById(dto.getAtividadeId()).orElseThrow();
+        ItemAtividade item = itemAtividadeRepository.findById(dto.getAtividadeId()).orElseThrow();
 
-        AtividadeRealizada realizada = new AtividadeRealizada();
-        realizada.setAtividade(atividade);
-        realizada.setPontuacao(dto.getPontuacao());
 
+        ItemAtividadeRealizado realizada = new ItemAtividadeRealizado();
+        realizada.setConsulta(consulta);
+        realizada.setItem(item);
+        realizada.setTentativa(dto.getTentativa());
+        realizada.setPontuacaoObtida(dto.getPontuacao());
+
+
+        itemAtividadeRealizadoRepository.save(realizada);
         consulta.adicionarAtividade(realizada);
 
         return consultaRepository.save(consulta);
-
     }
 }

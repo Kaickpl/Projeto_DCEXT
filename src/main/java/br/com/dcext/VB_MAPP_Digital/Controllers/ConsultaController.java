@@ -33,8 +33,8 @@ public class ConsultaController {
         return ResponseEntity.ok(consultaService.listarConsultas());
     }
 
-    @PostMapping("/{consultaId}/atividades")
-    public ResponseEntity<Consulta> realizarAtividade(@PathVariable int consultaId, @RequestBody RealizarAtividadeDTO dto){
-        return ResponseEntity.ok(consultaService.realizarAtividade(consultaId, dto));
+    @PostMapping("/atividades")
+    public ResponseEntity<Consulta> realizarAtividade(@RequestBody RealizarAtividadeDTO dto){
+        return ResponseEntity.ok(consultaService.realizarAtividade(dto));
     }
 }

@@ -33,7 +33,7 @@ public class Consulta {
     public void adicionarAtividade(ItemAtividadeRealizado realizada) {
         realizada.setConsulta(this);
         this.atividades.add(realizada);
-
+        recalcularPontuacao();
 
     }
 

@@ -12,5 +12,5 @@ public interface ConsultaService {
 
     Consulta criarConsulta(ConsultaDTO dto);
     List<Consulta> listarConsultas();
-    Consulta realizarAtividade(int consultaId, RealizarAtividadeDTO dto);
+    Consulta realizarAtividade(RealizarAtividadeDTO dto);
 }
