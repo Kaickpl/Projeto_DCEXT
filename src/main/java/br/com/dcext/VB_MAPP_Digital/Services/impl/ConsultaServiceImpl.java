@@ -4,6 +4,7 @@ package br.com.dcext.VB_MAPP_Digital.Services.impl;
 import br.com.dcext.VB_MAPP_Digital.Entities.*;
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.ConsultaDTO;
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.RealizarAtividadeDTO;
+import br.com.dcext.VB_MAPP_Digital.Entities.Enums.PontuacaoVbMapp;
 import br.com.dcext.VB_MAPP_Digital.Repositories.*;
 import br.com.dcext.VB_MAPP_Digital.Services.ConsultaService;
 import org.apache.coyote.BadRequestException;
@@ -66,7 +67,7 @@ public class ConsultaServiceImpl implements ConsultaService {
         realizada.setConsulta(consulta);
         realizada.setItem(item);
         realizada.setTentativa(dto.getTentativa());
-        realizada.setPontuacaoObtida(dto.getPontuacao());
+        realizada.setPontuacaoAlcancada(dto.getPontuacao());
 
 
         itemAtividadeRealizadoRepository.save(realizada);

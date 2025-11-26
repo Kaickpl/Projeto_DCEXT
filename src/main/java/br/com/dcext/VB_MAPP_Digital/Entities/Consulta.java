@@ -38,7 +38,7 @@ public class Consulta {
     }
 
     private void recalcularPontuacao() {
-        double total = atividades.stream().mapToDouble(a -> a.getPontuacaoObtida()).sum();
+        double total = atividades.stream().mapToDouble(a -> a.getPontuacaoAlcancada().getValor()).sum();
 
         this.pontuacaoParcial = total;
 

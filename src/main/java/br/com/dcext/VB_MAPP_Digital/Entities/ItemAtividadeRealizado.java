@@ -1,6 +1,7 @@
 package br.com.dcext.VB_MAPP_Digital.Entities;
 
 
+import br.com.dcext.VB_MAPP_Digital.Entities.Enums.PontuacaoVbMapp;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,5 +26,7 @@ public class ItemAtividadeRealizado {
 
     private Integer tentativa;
 
-    private float pontuacaoObtida;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "pontuacao_alcancada")
+    private PontuacaoVbMapp pontuacaoAlcancada;
 }

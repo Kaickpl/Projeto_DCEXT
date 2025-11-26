@@ -1,6 +1,7 @@
 package br.com.dcext.VB_MAPP_Digital.Entities;
 
 
+import br.com.dcext.VB_MAPP_Digital.Entities.Enums.PontuacaoVbMapp;
 import br.com.dcext.VB_MAPP_Digital.Entities.Enums.TipoATV;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,12 +24,11 @@ public class ItemAtividade {
     @Enumerated(EnumType.STRING)
     private TipoATV tipo;
 
-    private String reforcador;
-
     private String descricao;
 
-
-    private float pontuacaoMax;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "pontuacao_maxima")
+    private PontuacaoVbMapp pontuacaoMaxima;
 
     @ManyToOne
     @JoinColumn(name = "categoria_id")

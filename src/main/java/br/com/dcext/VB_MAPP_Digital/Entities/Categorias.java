@@ -21,6 +21,10 @@ public class Categorias {
 
     private String nome;
 
+    private String descricao;
+
+    private String reforcador;
+
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
     private List<ItemAtividade> itens;
 }
