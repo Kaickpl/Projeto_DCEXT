@@ -1,6 +1,7 @@
 package br.com.dcext.VB_MAPP_Digital.Services.impl;
 
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.PacienteDTOs;
+import br.com.dcext.VB_MAPP_Digital.Entities.Endereco;
 import br.com.dcext.VB_MAPP_Digital.Entities.Paciente;
 import br.com.dcext.VB_MAPP_Digital.Repositories.PacienteRepository;
 import br.com.dcext.VB_MAPP_Digital.Services.PacienteService;
@@ -57,15 +58,8 @@ public class PacienteServiceImpl implements PacienteService {
 
 
     @Override
-    public List<Paciente> listarPaciente(String nome) {
-        if  (nome == null || nome.isBlank()){
-            return null;
-        }
-        List<Paciente> pacientes = pacienteRepository.findByNomeContainsIgnoreCase(nome);
-        if (pacientes.isEmpty()) {
-            return null;
-        }
-        return pacientes;
+    public List<Paciente> listarPacienteNome(String nome) {
+        return pacienteRepository.findByNomeContainsIgnoreCase(nome);
     }
 
     @Override
@@ -120,11 +114,19 @@ public class PacienteServiceImpl implements PacienteService {
         paciente.setNome(pacienteDTOs.getNome());
         paciente.setResponsavel(pacienteDTOs.getResponsavel());
         paciente.setNumeroResponsavel(pacienteDTOs.getNumeroResponsavel());
-        paciente.setEndereco(pacienteDTOs.getEndereco());
         paciente.setPacienteId(pacienteDTOs.getIdPaciente());
         paciente.setDataNascimento(pacienteDTOs.getDataNascimento());
         paciente.setGenero(pacienteDTOs.getGenero());
         paciente.setObservacoes(pacienteDTOs.getObservacoes());
+        if (pacienteDTOs.getEnderecoDTOs() != null) {
+            Endereco endereco = new Endereco();
+            endereco.setRua(pacienteDTOs.getEnderecoDTOs().getRua());
+            endereco.setNumero(pacienteDTOs.getEnderecoDTOs().getNumero());
+            endereco.setBairro(pacienteDTOs.getEnderecoDTOs().getBairro());
+            endereco.setCidade(pacienteDTOs.getEnderecoDTOs().getCidade());
+            endereco.setEstado(pacienteDTOs.getEnderecoDTOs().getEstado());
+            paciente.setEndereco(endereco);
+        }
         return paciente;
     }
 }

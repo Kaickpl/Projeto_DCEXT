@@ -15,7 +15,7 @@ public interface PacienteService {
     List<Paciente> listarPacientes();
     Paciente cadastrarPaciente(Paciente paciente);
     boolean deletarPaciente(int idPaciente);
-    List<Paciente> listarPaciente(String nome);
+    List<Paciente> listarPacienteNome(String nome);
     Paciente editarPaciente(int idPaciente, Paciente paciente);
     Page<Paciente> ListarAlunos(Pageable page);
 

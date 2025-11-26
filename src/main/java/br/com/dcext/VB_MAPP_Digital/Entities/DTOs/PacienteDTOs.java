@@ -1,5 +1,6 @@
 package br.com.dcext.VB_MAPP_Digital.Entities.DTOs;
 
+import br.com.dcext.VB_MAPP_Digital.Entities.Aluno;
 import br.com.dcext.VB_MAPP_Digital.Entities.Endereco;
 import br.com.dcext.VB_MAPP_Digital.Entities.Paciente;
 import lombok.AllArgsConstructor;
@@ -20,7 +21,7 @@ public class PacienteDTOs {
     private String dataNascimento;
     private String genero;
     private String observacoes;
-    private Endereco endereco;
+    private EnderecoDTOs enderecoDTOs;
     public PacienteDTOs(Paciente paciente) {
         this.idPaciente = paciente.getPacienteId();
         this.nome = paciente.getNome();
@@ -29,7 +30,8 @@ public class PacienteDTOs {
         this.dataNascimento = paciente.getDataNascimento();
         this.genero = paciente.getGenero();
         this.observacoes = paciente.getObservacoes();
-        this.endereco = paciente.getEndereco();
-
+        if (paciente.getEndereco() != null) {
+            this.enderecoDTOs = new EnderecoDTOs(paciente.getEndereco());
+        }
     }
 }
