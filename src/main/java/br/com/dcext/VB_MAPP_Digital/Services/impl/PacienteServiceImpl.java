@@ -69,8 +69,40 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public Paciente editarPaciente(int idPaciente, Paciente paciente) {
-        return null;
+    public Paciente editarPaciente(int pacienteId, Paciente paciente) {
+        Optional<Paciente> idExiste = pacienteRepository.findById(pacienteId);
+        if (idExiste.isEmpty()) {
+            return null;
+        }
+        Paciente PacienteEncontrado = idExiste.get();
+        if (paciente.getNome() != null) {
+            if (paciente.getNome().isBlank()) {
+                return null;
+            }
+            PacienteEncontrado.setNome(paciente.getNome());
+        }
+        if (paciente.getNumeroResponsavel() != null) {
+
+            if (paciente.getNumeroResponsavel().isBlank()) {
+                return null;
+            }
+            PacienteEncontrado.setNumeroResponsavel(paciente.getNumeroResponsavel());;
+        }
+        if (paciente.getDataNascimento() != null) {
+            if (PacienteEncontrado.getDataNascimento()!= null){
+                return null;
+            }
+            PacienteEncontrado.setDataNascimento(paciente.getDataNascimento());
+        }
+        if (paciente.getResponsavel() != null) {
+            if (paciente.getResponsavel().isBlank()) {
+                return null;
+            }
+            PacienteEncontrado.setResponsavel(paciente.getResponsavel());
+        }
+
+        return pacienteRepository.save(PacienteEncontrado);
+
     }
 
     @Override

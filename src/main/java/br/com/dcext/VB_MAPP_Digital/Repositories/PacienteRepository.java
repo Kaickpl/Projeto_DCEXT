@@ -10,4 +10,5 @@ import java.util.List;
 public interface PacienteRepository extends JpaRepository<Paciente, Integer> {
     public List<Paciente> findByNomeContainsIgnoreCase(String nome);
     public Paciente findByResponsavel(String responsavel);
+    public p
 }
