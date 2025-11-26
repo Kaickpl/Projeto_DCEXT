@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/paciente")
 public class PacienteController {
@@ -17,13 +17,13 @@ public class PacienteController {
     @Autowired
     private PacienteService pacienteService;
 
-    @PostMapping
+    @PostMapping("/cadastrar")
     public ResponseEntity<Paciente> cadastrarPaciente(@RequestBody Paciente paciente) {
         return ResponseEntity.ok(pacienteService.cadastrarPaciente(paciente));
     }
 
-    @DeleteMapping
-    public ResponseEntity<Boolean> deletarPaciente(@RequestBody int idPaciente) {
+    @DeleteMapping("/{idPaciente}")
+    public ResponseEntity<Boolean> deletarPaciente(@PathVariable int idPaciente) {
         return ResponseEntity.ok(pacienteService.deletarPaciente(idPaciente));
     }
 
