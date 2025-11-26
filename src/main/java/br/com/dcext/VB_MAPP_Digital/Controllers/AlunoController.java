@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/aluno")
 public class AlunoController {
@@ -17,7 +17,7 @@ public class AlunoController {
     @Autowired
     private AlunoService alunoService;
 
-    @PostMapping
+    @PostMapping("/cadastrar")
     public ResponseEntity<Aluno> cadastrarAluno(@RequestBody Aluno aluno) {
 
         return ResponseEntity.ok(alunoService.cadastrarAluno(aluno));
