@@ -23,19 +23,31 @@ public class ConsultaController {
 
 
     @PostMapping
-    public ResponseEntity<ResponseConsultaDTO> criarConsulta(@RequestBody ConsultaDTO dto){
+//<<<<<<< HEAD
+//    public ResponseEntity<ResponseConsultaDTO> criarConsulta(@RequestBody ConsultaDTO dto){
+//
+//=======
+    public ResponseEntity<ResponseConsultaDTO> criarConsulta(@PathVariable Integer idPaciente, @RequestBody ConsultaDTO dto){
+        dto.setPacienteId(idPaciente);
 
+
+//>>>>>>> ab51fc45a58beba292c3b21529bce0be9a760b63
         return ResponseEntity.ok(consultaService.criarConsulta(dto));
-
     }
 
-    @GetMapping
-    public ResponseEntity<List<ResponseConsultaDTO>> listarConsultas(){
-        return ResponseEntity.ok(consultaService.listarConsultas());
+//<<<<<<< HEAD
+//    @GetMapping
+//    public ResponseEntity<List<ResponseConsultaDTO>> listarConsultas(){
+//        return ResponseEntity.ok(consultaService.listarConsultas());
+//=======
+    @GetMapping()
+    public ResponseEntity<List<ResponseConsultaDTO>> listarConsultasPorPAciente(){
+        List<ResponseConsultaDTO> consultas = consultaService.listarConsultas();
+        if(consultas.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(consultas);
+//>>>>>>> ab51fc45a58beba292c3b21529bce0be9a760b63
     }
 
-    @PostMapping("/atividades")
-    public ResponseEntity<Consulta> realizarAtividade(@RequestBody RealizarAtividadeDTO dto){
-        return ResponseEntity.ok(consultaService.realizarAtividade(dto));
-    }
 }

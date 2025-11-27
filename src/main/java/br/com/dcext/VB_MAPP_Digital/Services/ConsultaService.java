@@ -11,7 +11,13 @@ import java.util.List;
 
 public interface ConsultaService {
 
-    ResponseConsultaDTO criarConsulta(ConsultaDTO dto);
+//<<<<<<< HEAD
+//    ResponseConsultaDTO criarConsulta(ConsultaDTO dto);
+//    List<ResponseConsultaDTO> listarConsultas();
+//=======
+        ResponseConsultaDTO criarConsulta(ConsultaDTO dto);
     List<ResponseConsultaDTO> listarConsultas();
-    Consulta realizarAtividade(RealizarAtividadeDTO dto);
+//>>>>>>> ab51fc45a58beba292c3b21529bce0be9a760b63
+    ResponseConsultaDTO realizarAtividade(RealizarAtividadeDTO dto);
+    Consulta buscarConsulta(Integer consultaId);
 }

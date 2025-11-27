@@ -60,12 +60,17 @@ public class ConsultaServiceImpl implements ConsultaService {
     }
 
     @Override
+//<<<<<<< HEAD
+//    public List<ResponseConsultaDTO> listarConsultas() {
+//        return consultaRepository.findAll().stream().map(ConsultaMapper::paraDTO).toList();
+//=======
     public List<ResponseConsultaDTO> listarConsultas() {
         return consultaRepository.findAll().stream().map(ConsultaMapper::paraDTO).toList();
+//>>>>>>> ab51fc45a58beba292c3b21529bce0be9a760b63
     }
 
     @Override
-    public Consulta realizarAtividade(RealizarAtividadeDTO dto) {
+    public ResponseConsultaDTO realizarAtividade(RealizarAtividadeDTO dto) {
         Consulta consulta = consultaRepository.findById(dto.getConsultaId()).orElseThrow();
 
         ItemAtividade item = itemAtividadeRepository.findById(dto.getAtividadeId()).orElseThrow();
@@ -81,6 +86,13 @@ public class ConsultaServiceImpl implements ConsultaService {
         itemAtividadeRealizadoRepository.save(realizada);
         consulta.adicionarAtividade(realizada);
 
-        return consultaRepository.save(consulta);
+        Consulta consultaSalva = consultaRepository.save(consulta);
+
+        return ConsultaMapper.paraDTO(consultaSalva);
+    }
+
+    @Override
+    public Consulta buscarConsulta(Integer consultaId) {
+        return consultaRepository.findById(consultaId).orElseThrow();
     }
 }
