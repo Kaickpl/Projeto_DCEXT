@@ -11,6 +11,7 @@ import java.util.List;
 public interface ConsultaService {
 
     Consulta criarConsulta(ConsultaDTO dto);
-    List<Consulta> listarConsultas();
+    List<Consulta> listarConsultasDoPaciente(Integer idPaciente);
     Consulta realizarAtividade(RealizarAtividadeDTO dto);
+    Consulta buscarConsulta(Integer consultaId);
 }

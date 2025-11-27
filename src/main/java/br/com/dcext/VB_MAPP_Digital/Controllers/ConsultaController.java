@@ -14,7 +14,7 @@ import org.springframework.web.servlet.function.EntityResponse;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/consultas")
+@RequestMapping("/api/paciente/{idPaciente}/consultas")
 public class ConsultaController {
 
     @Autowired
@@ -22,19 +22,18 @@ public class ConsultaController {
 
 
     @PostMapping
-    public ResponseEntity<Consulta> criarConsulta(@RequestBody ConsultaDTO dto){
-
+    public ResponseEntity<Consulta> criarConsulta(@PathVariable Integer idPaciente, @RequestBody ConsultaDTO dto){
+        dto.setPacienteId(idPaciente);
         return ResponseEntity.ok(consultaService.criarConsulta(dto));
-
     }
 
-    @GetMapping
-    public ResponseEntity<List<Consulta>> listarConsultas(){
-        return ResponseEntity.ok(consultaService.listarConsultas());
+    @GetMapping("/{idConsulta}")
+    public ResponseEntity<List<Consulta>> listarConsultasPorPAciente(@PathVariable Integer idPaciente,@PathVariable Integer idConsulta){
+        List<Consulta> consultas = consultaService.listarConsultasDoPaciente(idConsulta);
+        if(consultas.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(consultas);
     }
 
-    @PostMapping("/atividades")
-    public ResponseEntity<Consulta> realizarAtividade(@RequestBody RealizarAtividadeDTO dto){
-        return ResponseEntity.ok(consultaService.realizarAtividade(dto));
-    }
 }

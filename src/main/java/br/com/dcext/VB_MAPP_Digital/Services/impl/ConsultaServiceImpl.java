@@ -52,8 +52,8 @@ public class ConsultaServiceImpl implements ConsultaService {
     }
 
     @Override
-    public List<Consulta> listarConsultas() {
-        return consultaRepository.findAll();
+    public List<Consulta> listarConsultasDoPaciente(Integer idPaciente) {
+        return consultaRepository.findConsultasByPacienteId(idPaciente);
     }
 
     @Override
@@ -74,5 +74,10 @@ public class ConsultaServiceImpl implements ConsultaService {
         consulta.adicionarAtividade(realizada);
 
         return consultaRepository.save(consulta);
+    }
+
+    @Override
+    public Consulta buscarConsulta(Integer consultaId) {
+        return consultaRepository.findById(consultaId).orElseThrow();
     }
 }
