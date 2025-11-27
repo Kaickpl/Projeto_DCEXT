@@ -4,7 +4,9 @@ package br.com.dcext.VB_MAPP_Digital.Services.impl;
 import br.com.dcext.VB_MAPP_Digital.Entities.*;
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.ConsultaDTO;
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.RealizarAtividadeDTO;
+import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.ResponseConsultaDTO;
 import br.com.dcext.VB_MAPP_Digital.Entities.Enums.PontuacaoVbMapp;
+import br.com.dcext.VB_MAPP_Digital.Mappers.ConsultaMapper;
 import br.com.dcext.VB_MAPP_Digital.Repositories.*;
 import br.com.dcext.VB_MAPP_Digital.Services.ConsultaService;
 import org.apache.coyote.BadRequestException;
@@ -32,7 +34,7 @@ public class ConsultaServiceImpl implements ConsultaService {
     private ItemAtividadeRealizadoRepository itemAtividadeRealizadoRepository;
 
     @Override
-    public Consulta criarConsulta(ConsultaDTO dto) {
+    public ResponseConsultaDTO criarConsulta(ConsultaDTO dto) {
         Aluno aluno = alunoRepository.findById(dto.getAlunoId()).orElseThrow();
 
         Paciente paciente = pacienteRepository.findById(dto.getPacienteId()).orElseThrow();
@@ -46,14 +48,20 @@ public class ConsultaServiceImpl implements ConsultaService {
         if (!aluno.getPacientes().contains(paciente)){
             aluno.getPacientes().add(paciente);
             alunoRepository.save(aluno);
+            paciente.setAluno(aluno);
+            pacienteRepository.save(paciente);
         }
 
-        return consultaRepository.save(consulta);
+        consultaRepository.save(consulta);
+
+
+
+        return ConsultaMapper.paraDTO(consulta);
     }
 
     @Override
-    public List<Consulta> listarConsultas() {
-        return consultaRepository.findAll();
+    public List<ResponseConsultaDTO> listarConsultas() {
+        return consultaRepository.findAll().stream().map(ConsultaMapper::paraDTO).toList();
     }
 
     @Override

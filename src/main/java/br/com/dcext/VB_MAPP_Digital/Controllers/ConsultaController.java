@@ -4,6 +4,7 @@ package br.com.dcext.VB_MAPP_Digital.Controllers;
 import br.com.dcext.VB_MAPP_Digital.Entities.Consulta;
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.ConsultaDTO;
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.RealizarAtividadeDTO;
+import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.ResponseConsultaDTO;
 import br.com.dcext.VB_MAPP_Digital.Services.ConsultaService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +23,14 @@ public class ConsultaController {
 
 
     @PostMapping
-    public ResponseEntity<Consulta> criarConsulta(@RequestBody ConsultaDTO dto){
+    public ResponseEntity<ResponseConsultaDTO> criarConsulta(@RequestBody ConsultaDTO dto){
 
         return ResponseEntity.ok(consultaService.criarConsulta(dto));
 
     }
 
     @GetMapping
-    public ResponseEntity<List<Consulta>> listarConsultas(){
+    public ResponseEntity<List<ResponseConsultaDTO>> listarConsultas(){
         return ResponseEntity.ok(consultaService.listarConsultas());
     }
 

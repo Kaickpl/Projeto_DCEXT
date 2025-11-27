@@ -59,7 +59,7 @@ public class PacienteServiceImpl implements PacienteService {
 
     @Override
     public List<Paciente> listarPacienteNome(String nome) {
-        return pacienteRepository.findByNomeContainsIgnoreCase(nome);
+        return pacienteRepository.findByNomePacienteContainsIgnoreCase(nome);
     }
 
     @Override
@@ -69,11 +69,11 @@ public class PacienteServiceImpl implements PacienteService {
             return null;
         }
         Paciente PacienteEncontrado = idExiste.get();
-        if (paciente.getNome() != null) {
-            if (paciente.getNome().isBlank()) {
+        if (paciente.getNomePaciente() != null) {
+            if (paciente.getNomePaciente().isBlank()) {
                 return null;
             }
-            PacienteEncontrado.setNome(paciente.getNome());
+            PacienteEncontrado.setNomePaciente(paciente.getNomePaciente());
         }
         if (paciente.getNumeroResponsavel() != null) {
 
@@ -111,22 +111,23 @@ public class PacienteServiceImpl implements PacienteService {
 
     private Paciente converterPacienteDTO(PacienteDTOs pacienteDTOs) {
         Paciente paciente = new Paciente();
-        paciente.setNome(pacienteDTOs.getNome());
+        paciente.setNomePaciente(pacienteDTOs.getNome());
         paciente.setResponsavel(pacienteDTOs.getResponsavel());
         paciente.setNumeroResponsavel(pacienteDTOs.getNumeroResponsavel());
         paciente.setPacienteId(pacienteDTOs.getIdPaciente());
         paciente.setDataNascimento(pacienteDTOs.getDataNascimento());
         paciente.setGenero(pacienteDTOs.getGenero());
         paciente.setObservacoes(pacienteDTOs.getObservacoes());
-        if (pacienteDTOs.getEnderecoDTOs() != null) {
-            Endereco endereco = new Endereco();
-            endereco.setRua(pacienteDTOs.getEnderecoDTOs().getRua());
-            endereco.setNumero(pacienteDTOs.getEnderecoDTOs().getNumero());
-            endereco.setBairro(pacienteDTOs.getEnderecoDTOs().getBairro());
-            endereco.setCidade(pacienteDTOs.getEnderecoDTOs().getCidade());
-            endereco.setEstado(pacienteDTOs.getEnderecoDTOs().getEstado());
-            paciente.setEndereco(endereco);
-        }
+        paciente.setEndereco(pacienteDTOs.getEndereco());
+//        if (pacienteDTOs.gete() != null) {
+//            Endereco endereco = new Endereco();
+//            endereco.setRua(pacienteDTOs.getEnderecoDTOs().getRua());
+//            endereco.setNumero(pacienteDTOs.getEnderecoDTOs().getNumero());
+//            endereco.setBairro(pacienteDTOs.getEnderecoDTOs().getBairro());
+//            endereco.setCidade(pacienteDTOs.getEnderecoDTOs().getCidade());
+//            endereco.setEstado(pacienteDTOs.getEnderecoDTOs().getEstado());
+//            paciente.setEndereco(endereco);
+//        }
         return paciente;
     }
 }

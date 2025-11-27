@@ -2,6 +2,7 @@ package br.com.dcext.VB_MAPP_Digital.Controllers;
 
 
 import br.com.dcext.VB_MAPP_Digital.Entities.Aluno;
+import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.AlunoDTO;
 import br.com.dcext.VB_MAPP_Digital.Repositories.AlunoRepository;
 import br.com.dcext.VB_MAPP_Digital.Services.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class AlunoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Aluno>> listarAlunos() {
+    public ResponseEntity<List<AlunoDTO>> listarAlunos() {
         return ResponseEntity.ok(alunoService.listarAlunos());
     }
 

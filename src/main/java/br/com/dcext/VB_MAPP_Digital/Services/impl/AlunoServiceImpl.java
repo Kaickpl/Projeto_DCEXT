@@ -2,6 +2,8 @@ package br.com.dcext.VB_MAPP_Digital.Services.impl;
 
 
 import br.com.dcext.VB_MAPP_Digital.Entities.Aluno;
+import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.AlunoDTO;
+import br.com.dcext.VB_MAPP_Digital.Mappers.AlunoDTOMapper;
 import br.com.dcext.VB_MAPP_Digital.Repositories.AlunoRepository;
 import br.com.dcext.VB_MAPP_Digital.Services.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +36,8 @@ public class AlunoServiceImpl implements AlunoService {
     }
 
     @Override
-    public List<Aluno> listarAlunos() {
-        return alunoRepository.findAll();
+    public List<AlunoDTO> listarAlunos() {
+        return alunoRepository.findAll().stream().map(AlunoDTOMapper::paraDTO).toList();
     }
 
     public Aluno atualizarAluno(int id, Aluno aluno) {
@@ -45,7 +47,7 @@ public class AlunoServiceImpl implements AlunoService {
             return null;
         }
 
-        alunoBanco.setNome(aluno.getNome());
+        alunoBanco.setNomeAluno(aluno.getNomeAluno());
         alunoBanco.setMatricula(aluno.getMatricula());
         alunoBanco.setEmail(aluno.getEmail());
         alunoBanco.setTelefone(aluno.getTelefone());

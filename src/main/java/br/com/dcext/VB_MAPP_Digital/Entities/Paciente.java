@@ -15,7 +15,7 @@ public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int pacienteId;
-    private String nome;
+    private String nomePaciente;
     private String responsavel;
     private String numeroResponsavel;
     private String dataNascimento;

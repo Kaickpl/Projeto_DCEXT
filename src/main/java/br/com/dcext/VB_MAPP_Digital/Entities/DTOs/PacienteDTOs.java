@@ -21,17 +21,15 @@ public class PacienteDTOs {
     private String dataNascimento;
     private String genero;
     private String observacoes;
-    private EnderecoDTOs enderecoDTOs;
+    private Endereco endereco;
     public PacienteDTOs(Paciente paciente) {
         this.idPaciente = paciente.getPacienteId();
-        this.nome = paciente.getNome();
+        this.nome = paciente.getNomePaciente();
         this.responsavel = paciente.getResponsavel();
         this.numeroResponsavel = paciente.getNumeroResponsavel();
         this.dataNascimento = paciente.getDataNascimento();
         this.genero = paciente.getGenero();
         this.observacoes = paciente.getObservacoes();
-        if (paciente.getEndereco() != null) {
-            this.enderecoDTOs = new EnderecoDTOs(paciente.getEndereco());
-        }
+        this.endereco = paciente.getEndereco();
     }
 }

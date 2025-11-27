@@ -19,7 +19,7 @@ public class Aluno {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int alunoId;
-    private String nome;
+    private String nomeAluno;
     private String matricula;
     private String email;
     private String telefone;
