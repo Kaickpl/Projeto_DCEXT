@@ -3,6 +3,7 @@ package br.com.dcext.VB_MAPP_Digital.Controllers;
 
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.PacienteDTOs;
 import br.com.dcext.VB_MAPP_Digital.Entities.Paciente;
+import br.com.dcext.VB_MAPP_Digital.Mappers.PacienteMapper;
 import br.com.dcext.VB_MAPP_Digital.Services.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,13 +17,14 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/paciente")
 public class PacienteController {
 
-
         @Autowired
         private PacienteService pacienteService;
 
         @PostMapping("/cadastrar")
-        public ResponseEntity<Paciente> cadastrarPaciente(@RequestBody Paciente paciente) {
-            return ResponseEntity.ok(pacienteService.cadastrarPaciente(paciente));
+        public ResponseEntity<PacienteDTOs> cadastrarPaciente(@RequestBody PacienteDTOs pacienteDTOs) {
+            Paciente paciente = pacienteService.cadastrarPaciente(pacienteDTOs);
+            PacienteDTOs pacienteDTO = PacienteMapper.paraDTO(paciente);
+            return ResponseEntity.ok(pacienteDTO);
         }
 
         @DeleteMapping("/{idPaciente}")

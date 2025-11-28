@@ -13,10 +13,11 @@ public interface PacienteService {
 
 
     List<Paciente> listarPacientes();
-    Paciente cadastrarPaciente(Paciente paciente);
+    Paciente cadastrarPaciente(PacienteDTOs pacienteDto);
     boolean deletarPaciente(int idPaciente);
     List<Paciente> listarPacienteNome(String nome);
     Paciente editarPaciente(int idPaciente, Paciente paciente);
     Page<Paciente> ListarAlunos(Pageable page);
+    Paciente buscarPaciente(int idPaciente);
 
 }

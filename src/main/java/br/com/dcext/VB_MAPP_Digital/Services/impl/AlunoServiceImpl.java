@@ -36,6 +36,11 @@ public class AlunoServiceImpl implements AlunoService {
     }
 
     @Override
+    public Aluno buscarAlunoPorId(Integer idAluno){
+        return alunoRepository.findById(idAluno).get();
+    }
+
+    @Override
     public List<AlunoDTO> listarAlunos() {
         return alunoRepository.findAll().stream().map(AlunoDTOMapper::paraDTO).toList();
     }

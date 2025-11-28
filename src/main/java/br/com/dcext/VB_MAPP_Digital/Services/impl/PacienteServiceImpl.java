@@ -3,6 +3,7 @@ package br.com.dcext.VB_MAPP_Digital.Services.impl;
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.PacienteDTOs;
 import br.com.dcext.VB_MAPP_Digital.Entities.Endereco;
 import br.com.dcext.VB_MAPP_Digital.Entities.Paciente;
+import br.com.dcext.VB_MAPP_Digital.Mappers.PacienteMapper;
 import br.com.dcext.VB_MAPP_Digital.Repositories.PacienteRepository;
 import br.com.dcext.VB_MAPP_Digital.Services.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,12 @@ public class PacienteServiceImpl implements PacienteService {
     @Autowired
     private PacienteRepository pacienteRepository;
 
+    @Autowired
+    private PacienteMapper pacienteMapper;
 
     @Override
-    public Paciente cadastrarPaciente(Paciente paciente) {
+    public Paciente cadastrarPaciente(PacienteDTOs pacienteDto) {
+        Paciente entidade = pacienteMapper.paraEntity(pacienteDto);
 //        if  (pacienteDTOs.getNome() == null || pacienteDTOs.getNome().isBlank()){
 //            return  null;
 //        }
@@ -37,7 +41,7 @@ public class PacienteServiceImpl implements PacienteService {
 //            return  null;
 //        }
 //        Paciente paciente = cadastrarPaciente(pacienteDTOs);
-        return pacienteRepository.save(paciente);
+        return pacienteRepository.save(entidade);
         }
 
 
@@ -109,25 +113,8 @@ public class PacienteServiceImpl implements PacienteService {
 
     }
 
-    private Paciente converterPacienteDTO(PacienteDTOs pacienteDTOs) {
-        Paciente paciente = new Paciente();
-        paciente.setNomePaciente(pacienteDTOs.getNome());
-        paciente.setResponsavel(pacienteDTOs.getResponsavel());
-        paciente.setNumeroResponsavel(pacienteDTOs.getNumeroResponsavel());
-        paciente.setPacienteId(pacienteDTOs.getIdPaciente());
-        paciente.setDataNascimento(pacienteDTOs.getDataNascimento());
-        paciente.setGenero(pacienteDTOs.getGenero());
-        paciente.setObservacoes(pacienteDTOs.getObservacoes());
-        paciente.setEndereco(pacienteDTOs.getEndereco());
-//        if (pacienteDTOs.gete() != null) {
-//            Endereco endereco = new Endereco();
-//            endereco.setRua(pacienteDTOs.getEnderecoDTOs().getRua());
-//            endereco.setNumero(pacienteDTOs.getEnderecoDTOs().getNumero());
-//            endereco.setBairro(pacienteDTOs.getEnderecoDTOs().getBairro());
-//            endereco.setCidade(pacienteDTOs.getEnderecoDTOs().getCidade());
-//            endereco.setEstado(pacienteDTOs.getEnderecoDTOs().getEstado());
-//            paciente.setEndereco(endereco);
-//        }
-        return paciente;
+    @Override
+    public Paciente buscarPaciente(int idPaciente) {
+        return pacienteRepository.findById(idPaciente).get();
     }
 }

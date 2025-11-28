@@ -28,4 +28,5 @@ public class Paciente {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_aluno")
     private Aluno aluno;
+
 }

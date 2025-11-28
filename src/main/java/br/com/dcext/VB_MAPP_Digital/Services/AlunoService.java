@@ -11,4 +11,5 @@ public interface AlunoService {
     boolean deletarAluno(int idAluno);
     List<AlunoDTO> listarAlunos();
     Aluno atualizarAluno(int id, Aluno aluno);
+    Aluno buscarAlunoPorId(Integer idAluno);
 }

@@ -8,7 +8,7 @@ import br.com.dcext.VB_MAPP_Digital.Repositories.ItemAtividadeRealizadoRepositor
 import br.com.dcext.VB_MAPP_Digital.Repositories.ItemAtividadeRepository;
 import br.com.dcext.VB_MAPP_Digital.Services.ConsultaService;
 import br.com.dcext.VB_MAPP_Digital.Services.ItemAtividadeRealizadoService;
-import br.com.dcext.VB_MAPP_Digital.Utils.ItemAtividadeRealizadoMapper;
+import br.com.dcext.VB_MAPP_Digital.Mappers.ItemAtividadeRealizadoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,16 +29,12 @@ public class ItemAtividadeRealizadoServiceImpl implements ItemAtividadeRealizado
 
     @Override
     public ItemAtividadeRealizado salvarAtividadeRealizada(RealizarAtividadeDTO itemAtividadeRealizado){
-        Consulta consulta = consultaService.buscarConsulta(itemAtividadeRealizado.getConsultaId());
-        ItemAtividade atividade = itemAtividadeRepository.findById(itemAtividadeRealizado.getAtividadeId()).orElseThrow();
+        ItemAtividadeRealizado entidade = itemAtividadeRealizadoMapper.toEntity(itemAtividadeRealizado);
 
-        ItemAtividadeRealizado atividadeRealizada = new ItemAtividadeRealizado();
-        atividadeRealizada.setConsulta(consulta);
-        atividadeRealizada.setItem(atividade);
-        atividadeRealizada.setTentativa(itemAtividadeRealizado.getTentativa());
-        atividadeRealizada.setPontuacaoAlcancada(itemAtividadeRealizado.getPontuacao());
-
-        return itemAtividadeRealizadoRepository.save(atividadeRealizada);
+        if(entidade.getConsulta() != null && entidade.getConsulta().getPaciente() != null){
+            entidade.getConsulta().getPaciente().getNomePaciente();
+        }
+        return itemAtividadeRealizadoRepository.save(entidade);
     }
 
     @Override
