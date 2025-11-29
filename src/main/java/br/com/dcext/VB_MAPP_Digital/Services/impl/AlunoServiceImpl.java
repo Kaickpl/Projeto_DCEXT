@@ -3,10 +3,13 @@ package br.com.dcext.VB_MAPP_Digital.Services.impl;
 
 import br.com.dcext.VB_MAPP_Digital.Entities.Aluno;
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.AlunoDTO;
+import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.LoginDTO;
+import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.LoginResponseDTO;
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.RegisterDTO;
 import br.com.dcext.VB_MAPP_Digital.Mappers.AlunoDTOMapper;
 import br.com.dcext.VB_MAPP_Digital.Repositories.AlunoRepository;
 import br.com.dcext.VB_MAPP_Digital.Services.AlunoService;
+import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -69,6 +72,22 @@ public class AlunoServiceImpl implements AlunoService {
         alunoBanco.setSenha(aluno.getSenha());
 
         return alunoRepository.save(alunoBanco);
+
+    }
+
+    public LoginResponseDTO login(LoginDTO dto) {
+        var aluno = alunoRepository.findByEmail(dto.email())
+                .orElseThrow(() -> new RuntimeException("Email inválido."));
+
+        if (!aluno.getSenha().equals(dto.senha())) {
+            throw new RuntimeException("Senha incorreta.");
+        }
+
+        return new LoginResponseDTO(
+                aluno.getAlunoId(),
+                aluno.getNomeAluno(),
+                aluno.getEmail()
+        );
 
     }
 }

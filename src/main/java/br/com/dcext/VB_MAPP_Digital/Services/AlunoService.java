@@ -3,6 +3,8 @@ package br.com.dcext.VB_MAPP_Digital.Services;
 
 import br.com.dcext.VB_MAPP_Digital.Entities.Aluno;
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.AlunoDTO;
+import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.LoginDTO;
+import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.LoginResponseDTO;
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.RegisterDTO;
 
 import java.util.List;
@@ -13,4 +15,5 @@ public interface AlunoService {
     List<AlunoDTO> listarAlunos();
     Aluno atualizarAluno(int id, Aluno aluno);
     Aluno buscarAlunoPorId(Integer idAluno);
+    LoginResponseDTO login(LoginDTO dto);
 }
