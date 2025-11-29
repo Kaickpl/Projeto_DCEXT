@@ -3,6 +3,8 @@ package br.com.dcext.VB_MAPP_Digital.Controllers;
 
 import br.com.dcext.VB_MAPP_Digital.Entities.Aluno;
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.AlunoDTO;
+import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.LoginDTO;
+import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.LoginResponseDTO;
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.RegisterDTO;
 import br.com.dcext.VB_MAPP_Digital.Repositories.AlunoRepository;
 import br.com.dcext.VB_MAPP_Digital.Services.AlunoService;
@@ -50,6 +52,13 @@ public class AlunoController {
 
         return ResponseEntity.ok().body(alunoatualizado);
 
+    }
+
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponseDTO> login(@RequestBody @Valid LoginDTO dto) {
+        var resultado =  alunoService.login(dto);
+        return ResponseEntity.ok(resultado);
     }
 
 }
