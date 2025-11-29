@@ -3,6 +3,7 @@ package br.com.dcext.VB_MAPP_Digital.Services.impl;
 
 import br.com.dcext.VB_MAPP_Digital.Entities.Aluno;
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.AlunoDTO;
+import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.RegisterDTO;
 import br.com.dcext.VB_MAPP_Digital.Mappers.AlunoDTOMapper;
 import br.com.dcext.VB_MAPP_Digital.Repositories.AlunoRepository;
 import br.com.dcext.VB_MAPP_Digital.Services.AlunoService;
@@ -19,7 +20,15 @@ public class AlunoServiceImpl implements AlunoService {
 
 
     @Override
-    public Aluno cadastrarAluno(Aluno aluno) {
+    public Aluno cadastrarAluno(RegisterDTO dto) {
+
+        Aluno aluno = new Aluno();
+        aluno.setNomeAluno(dto.nomeAluno());
+        aluno.setMatricula(dto.matricula());
+        aluno.setEmail(dto.email());
+        aluno.setTelefone(dto.telefone());
+        aluno.setSenha(dto.senha());
+        aluno.setPeriodo(dto.periodo());
 
         return alunoRepository.save(aluno);
     }

@@ -1,6 +1,8 @@
 package br.com.dcext.VB_MAPP_Digital.Entities;
 
 
+import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.AlunoDTO;
+import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.RegisterDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,4 +29,8 @@ public class Aluno {
     private int periodo;
     @ManyToMany
     private List<Paciente> pacientes = new ArrayList<>();
+
+
+
+    public Aluno(RegisterDTO dto) {}
 }

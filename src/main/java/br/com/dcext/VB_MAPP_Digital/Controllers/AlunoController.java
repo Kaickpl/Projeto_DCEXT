@@ -3,8 +3,10 @@ package br.com.dcext.VB_MAPP_Digital.Controllers;
 
 import br.com.dcext.VB_MAPP_Digital.Entities.Aluno;
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.AlunoDTO;
+import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.RegisterDTO;
 import br.com.dcext.VB_MAPP_Digital.Repositories.AlunoRepository;
 import br.com.dcext.VB_MAPP_Digital.Services.AlunoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +21,11 @@ public class AlunoController {
     private AlunoService alunoService;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<Aluno> cadastrarAluno(@RequestBody Aluno aluno) {
+    public ResponseEntity<AlunoDTO> cadastrarAluno(@RequestBody @Valid RegisterDTO dto) {
 
-        return ResponseEntity.ok(alunoService.cadastrarAluno(aluno));
+        Aluno aluno = alunoService.cadastrarAluno(dto);
+
+        return ResponseEntity.ok().body(new AlunoDTO(aluno));
 
     }
 
