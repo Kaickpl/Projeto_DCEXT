@@ -20,7 +20,10 @@ public class PacienteController {
         @Autowired
         private PacienteService pacienteService;
 
-        @PostMapping("/cadastrar")
+    @Autowired
+    private PacienteMapper pacienteMapper;
+
+    @PostMapping("/cadastrar")
         public ResponseEntity<PacienteDTOs> cadastrarPaciente(@RequestBody PacienteDTOs pacienteDTOs) {
             Paciente paciente = pacienteService.cadastrarPaciente(pacienteDTOs);
             PacienteDTOs pacienteDTO = PacienteMapper.paraDTO(paciente);
@@ -43,16 +46,19 @@ public class PacienteController {
         }
 
     @PutMapping("/{idPaciente}")
-        public ResponseEntity<Paciente> atualizarPaciente(
+        public ResponseEntity<PacienteDTOs> atualizarPaciente(
                 @PathVariable int idPaciente,
-                @RequestBody Paciente paciente) {
+                @RequestBody PacienteDTOs pacienteDto) {
 
-            Paciente atualizado = pacienteService.editarPaciente(idPaciente, paciente);
+            pacienteDto.setAlunoId(idPaciente);
+
+            Paciente atualizado = pacienteService.editarPaciente(idPaciente, pacienteDto);
+            PacienteDTOs pacienteDTO = PacienteMapper.paraDTO(atualizado);
 
             if (atualizado == null) {
                 return ResponseEntity.badRequest().build();
             }
 
-            return ResponseEntity.ok(atualizado);
+            return ResponseEntity.ok(pacienteDTO);
         }
     }

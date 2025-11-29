@@ -67,7 +67,7 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public Paciente editarPaciente(int pacienteId, Paciente paciente) {
+    public Paciente editarPaciente(int pacienteId, PacienteDTOs paciente) {
         Optional<Paciente> idExiste = pacienteRepository.findById(pacienteId);
         if (idExiste.isEmpty()) {
             return null;
@@ -87,7 +87,7 @@ public class PacienteServiceImpl implements PacienteService {
             PacienteEncontrado.setNumeroResponsavel(paciente.getNumeroResponsavel());;
         }
         if (paciente.getDataNascimento() != null) {
-            if (PacienteEncontrado.getDataNascimento()!= null){
+            if (paciente.getDataNascimento().isBlank()){
                 return null;
             }
             PacienteEncontrado.setDataNascimento(paciente.getDataNascimento());
