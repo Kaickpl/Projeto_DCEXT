@@ -11,9 +11,8 @@ import java.util.List;
 @Service
 public interface PacienteService {
 
-
     List<Paciente> listarPacientes();
-    Paciente cadastrarPaciente(PacienteDTOs pacienteDto);
+    Paciente cadastrarPaciente(Paciente paciente);
     boolean deletarPaciente(int idPaciente);
     List<Paciente> listarPacienteNome(String nome);
     Paciente editarPaciente(int pacienteId, PacienteDTOs paciente);

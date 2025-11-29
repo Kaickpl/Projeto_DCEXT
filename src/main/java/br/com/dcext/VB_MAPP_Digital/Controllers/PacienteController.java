@@ -24,10 +24,9 @@ public class PacienteController {
     private PacienteMapper pacienteMapper;
 
     @PostMapping("/cadastrar")
-        public ResponseEntity<PacienteDTOs> cadastrarPaciente(@RequestBody PacienteDTOs pacienteDTOs) {
-            Paciente paciente = pacienteService.cadastrarPaciente(pacienteDTOs);
-            PacienteDTOs pacienteDTO = PacienteMapper.paraDTO(paciente);
-            return ResponseEntity.ok(pacienteDTO);
+        public ResponseEntity<Paciente> cadastrarPaciente(@RequestBody Paciente paciente) {
+            pacienteService.cadastrarPaciente(paciente);
+            return ResponseEntity.ok(paciente);
         }
 
         @DeleteMapping("/{idPaciente}")

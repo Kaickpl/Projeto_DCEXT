@@ -23,8 +23,8 @@ public class PacienteServiceImpl implements PacienteService {
     private PacienteMapper pacienteMapper;
 
     @Override
-    public Paciente cadastrarPaciente(PacienteDTOs pacienteDto) {
-        Paciente entidade = pacienteMapper.paraEntity(pacienteDto);
+    public Paciente cadastrarPaciente(Paciente paciente) {
+        Paciente entidade = (paciente);
 //        if  (pacienteDTOs.getNome() == null || pacienteDTOs.getNome().isBlank()){
 //            return  null;
 //        }
