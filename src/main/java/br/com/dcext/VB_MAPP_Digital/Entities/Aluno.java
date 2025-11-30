@@ -27,7 +27,7 @@ public class Aluno {
     private String telefone;
     private String senha;
     private int periodo;
-    @ManyToMany
+    @ManyToMany()
     private List<Paciente> pacientes = new ArrayList<>();
 
 

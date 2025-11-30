@@ -33,14 +33,16 @@ public class AlunoController {
         return ResponseEntity.ok(alunoService.listarAlunos());
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deletarAluno(@RequestBody int idAluno) {
+    @DeleteMapping("/{idAluno}")
+    public ResponseEntity<String> deletarAluno(@PathVariable int idAluno) {
+
         boolean deletado = alunoService.deletarAluno(idAluno);
-        if (deletado == true) {
-            return ResponseEntity.noContent().build();
-        }else {
-            return ResponseEntity.badRequest().build();
-            }
+
+        if (deletado) {
+            return ResponseEntity.ok("Aluno deletado com sucesso.");
+        } else {
+            return ResponseEntity.badRequest().body("Aluno não encontrado.");
+        }
     }
 
     @PutMapping("/atualizarPerfil")
