@@ -1,6 +1,7 @@
 package br.com.dcext.VB_MAPP_Digital.Controllers;
 
 
+import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.ListarPacientesDTO;
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.PacienteDTOs;
 import br.com.dcext.VB_MAPP_Digital.Entities.Paciente;
 import br.com.dcext.VB_MAPP_Digital.Mappers.PacienteMapper;
@@ -60,4 +61,14 @@ public class PacienteController {
 
             return ResponseEntity.ok(pacienteDTO);
         }
+
+
+
+    @GetMapping("/listar")
+    public ResponseEntity<List<ListarPacientesDTO>> listarPacientes() {
+
+
+        return ResponseEntity.ok(pacienteService.listarPacientes());
     }
+
+}
