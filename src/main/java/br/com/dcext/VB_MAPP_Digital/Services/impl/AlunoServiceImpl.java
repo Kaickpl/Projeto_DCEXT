@@ -108,7 +108,10 @@ public class AlunoServiceImpl implements AlunoService {
         return new LoginResponseDTO(
                 aluno.getAlunoId(),
                 aluno.getNomeAluno(),
-                aluno.getEmail()
+                aluno.getEmail(),
+                aluno.getTelefone(),
+                aluno.getMatricula(),
+                aluno.getPeriodo()
         );
 
     }
