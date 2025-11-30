@@ -12,6 +12,8 @@ public class ListarPacientesDTO {
     private String nomePaciente;
     private String responsavel;
     private String numeroResponsavel;
+    private String dataDeNascimento;
+    private String genero;
 
     public ListarPacientesDTO() {}
 
@@ -20,5 +22,7 @@ public class ListarPacientesDTO {
         this.nomePaciente = paciente.getNomePaciente();
         this.responsavel = paciente.getResponsavel();
         this.numeroResponsavel = paciente.getNumeroResponsavel();
+        this.dataDeNascimento = paciente.getDataNascimento();
+        this.genero = paciente.getGenero();
     }
 }

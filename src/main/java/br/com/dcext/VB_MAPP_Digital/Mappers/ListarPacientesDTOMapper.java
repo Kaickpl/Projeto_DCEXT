@@ -13,6 +13,8 @@ public class ListarPacientesDTOMapper {
         dto.setNomePaciente(paciente.getNomePaciente());
         dto.setResponsavel(paciente.getResponsavel());
         dto.setNumeroResponsavel(paciente.getNumeroResponsavel());
+        dto.setDataDeNascimento(paciente.getDataNascimento());
+        dto.setGenero(paciente.getGenero());
 
         return dto;
     }
