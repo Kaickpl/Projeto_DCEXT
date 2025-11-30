@@ -2,10 +2,7 @@ package br.com.dcext.VB_MAPP_Digital.Services.impl;
 
 
 import br.com.dcext.VB_MAPP_Digital.Entities.Aluno;
-import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.AlunoDTO;
-import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.LoginDTO;
-import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.LoginResponseDTO;
-import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.RegisterDTO;
+import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.*;
 import br.com.dcext.VB_MAPP_Digital.Mappers.AlunoDTOMapper;
 import br.com.dcext.VB_MAPP_Digital.Repositories.AlunoRepository;
 import br.com.dcext.VB_MAPP_Digital.Services.AlunoService;
@@ -14,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AlunoServiceImpl implements AlunoService {
@@ -50,6 +48,30 @@ public class AlunoServiceImpl implements AlunoService {
     @Override
     public Aluno buscarAlunoPorId(Integer idAluno){
         return alunoRepository.findById(idAluno).get();
+    }
+
+    @Override
+    public Aluno trocarSenha(TrocaSenhaDTos senhaDTOs) {
+        Optional<Aluno> aluno = alunoRepository.findByEmail(senhaDTOs.getEmail());
+        if (aluno.isEmpty()) {
+            return null;
+        }
+        if (senhaDTOs.getNovaSenha() == null || senhaDTOs.getNovaSenha().isBlank() ||
+                senhaDTOs.getConfirmaSenha() == null || senhaDTOs.getConfirmaSenha().isBlank()) {
+            return null;
+
+        }if(!senhaDTOs.getNovaSenha().equals(senhaDTOs.getConfirmaSenha())){
+            return null;
+        }
+
+        if (senhaDTOs.getNovaSenha().equals(aluno.get().getSenha())) {
+            return null;
+        }
+        Aluno alunoEncontrado = aluno.get();
+        alunoEncontrado.setSenha(senhaDTOs.getConfirmaSenha());
+        return alunoRepository.save(alunoEncontrado);
+
+
     }
 
     @Override

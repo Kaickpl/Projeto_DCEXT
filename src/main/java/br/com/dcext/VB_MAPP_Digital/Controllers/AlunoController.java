@@ -2,10 +2,7 @@ package br.com.dcext.VB_MAPP_Digital.Controllers;
 
 
 import br.com.dcext.VB_MAPP_Digital.Entities.Aluno;
-import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.AlunoDTO;
-import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.LoginDTO;
-import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.LoginResponseDTO;
-import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.RegisterDTO;
+import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.*;
 import br.com.dcext.VB_MAPP_Digital.Repositories.AlunoRepository;
 import br.com.dcext.VB_MAPP_Digital.Services.AlunoService;
 import jakarta.validation.Valid;
@@ -61,4 +58,12 @@ public class AlunoController {
         return ResponseEntity.ok(resultado);
     }
 
+    @PutMapping("/recuperarSenha")
+    public ResponseEntity<AlunoDTO> recuperarSenha(@RequestBody TrocaSenhaDTos senhaDTOs) {
+        Aluno alunoExixste = alunoService.trocarSenha(senhaDTOs);
+        if (alunoExixste == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(new AlunoDTO(alunoExixste));
+    }
 }
