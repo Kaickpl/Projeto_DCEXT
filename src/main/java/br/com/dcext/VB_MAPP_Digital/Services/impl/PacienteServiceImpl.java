@@ -114,6 +114,11 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
+    public List<Paciente> buscarPacientesPorAluno(int idAluno) {
+        return pacienteRepository.findByIdDoAluno(idAluno);
+    }
+
+    @Override
     public Paciente buscarPaciente(int idPaciente) {
         return pacienteRepository.findById(idPaciente).get();
     }

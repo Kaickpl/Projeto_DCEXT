@@ -34,6 +34,13 @@ public class PacienteController {
             return ResponseEntity.ok(pacienteService.deletarPaciente(idPaciente));
         }
 
+        @GetMapping("/usuario/{idUsuario}")
+        public ResponseEntity<List<PacienteDTOs>> listarPaciente(@PathVariable int idUsuario) {
+            List<Paciente> pacientes = pacienteService.buscarPacientesPorAluno(idUsuario);
+            List<PacienteDTOs> dtos = pacientes.stream().map(PacienteDTOs::new).collect(Collectors.toList());
+            return ResponseEntity.status(200).body(dtos);
+        }
+
         @GetMapping
         public ResponseEntity<List<PacienteDTOs>> listarPacientes(@RequestParam(required = false) String nome) {
             List<PacienteDTOs> pacientes = pacienteService.listarPacienteNome(nome).stream().map(p -> new PacienteDTOs(p)).collect(Collectors.toList());
@@ -52,7 +59,7 @@ public class PacienteController {
             pacienteDto.setAlunoId(idPaciente);
 
             Paciente atualizado = pacienteService.editarPaciente(idPaciente, pacienteDto);
-            PacienteDTOs pacienteDTO = PacienteMapper.paraDTO(atualizado);
+            PacienteDTOs pacienteDTO = pacienteMapper.paraDTO(atualizado);
 
             if (atualizado == null) {
                 return ResponseEntity.badRequest().build();

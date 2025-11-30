@@ -18,5 +18,5 @@ public interface PacienteService {
     Paciente editarPaciente(int pacienteId, PacienteDTOs paciente);
     Page<Paciente> ListarAlunos(Pageable page);
     Paciente buscarPaciente(int idPaciente);
-
+    List<Paciente> buscarPacientesPorAluno(int idAluno);
 }
