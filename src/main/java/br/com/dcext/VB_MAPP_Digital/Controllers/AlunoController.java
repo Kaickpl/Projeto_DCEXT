@@ -43,7 +43,7 @@ public class AlunoController {
             }
     }
 
-    @PutMapping
+    @PutMapping("/atualizarPerfil")
     public ResponseEntity<Aluno> atualizarAluno(@PathVariable int id, @RequestBody Aluno aluno) {
         Aluno alunoatualizado = alunoService.atualizarAluno(id,aluno);
 
