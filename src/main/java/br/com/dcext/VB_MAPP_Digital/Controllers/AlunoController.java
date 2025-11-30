@@ -33,11 +33,13 @@ public class AlunoController {
         return ResponseEntity.ok(alunoService.listarAlunos());
     }
 
+
     @DeleteMapping("/{alunoId}")
     public ResponseEntity<Void> deletarAluno(@PathVariable int alunoId) {
         boolean deletado = alunoService.deletarAluno(alunoId);
 
         return deletado ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+
     }
 
     @PutMapping("/atualizarPerfil")
