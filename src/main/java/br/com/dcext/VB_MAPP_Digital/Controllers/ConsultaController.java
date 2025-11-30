@@ -40,7 +40,7 @@ public class ConsultaController {
 //    public ResponseEntity<List<ResponseConsultaDTO>> listarConsultas(){
 //        return ResponseEntity.ok(consultaService.listarConsultas());
 //=======
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<List<ResponseConsultaDTO>> listarConsultasPorPAciente(){
         List<ResponseConsultaDTO> consultas = consultaService.listarConsultas();
         if(consultas.isEmpty()){
@@ -50,4 +50,9 @@ public class ConsultaController {
 //>>>>>>> ab51fc45a58beba292c3b21529bce0be9a760b63
     }
 
+
+    @GetMapping("/relatorio/{consultaId}")
+    public ResponseEntity<ResponseConsultaDTO> relatorioConsulta(@PathVariable int consultaId){
+        return ResponseEntity.ok(consultaService.relatorioConsultaId(consultaId));
+    }
 }

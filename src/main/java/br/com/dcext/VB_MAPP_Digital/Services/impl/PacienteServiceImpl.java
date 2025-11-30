@@ -1,8 +1,10 @@
 package br.com.dcext.VB_MAPP_Digital.Services.impl;
 
+import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.ListarPacientesDTO;
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.PacienteDTOs;
 import br.com.dcext.VB_MAPP_Digital.Entities.Endereco;
 import br.com.dcext.VB_MAPP_Digital.Entities.Paciente;
+import br.com.dcext.VB_MAPP_Digital.Mappers.ListarPacientesDTOMapper;
 import br.com.dcext.VB_MAPP_Digital.Mappers.PacienteMapper;
 import br.com.dcext.VB_MAPP_Digital.Repositories.PacienteRepository;
 import br.com.dcext.VB_MAPP_Digital.Services.PacienteService;
@@ -56,8 +58,8 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
 
-    public List<Paciente> listarPacientes(){
-        return pacienteRepository.findAll();
+    public List<ListarPacientesDTO> listarPacientes(){
+        return pacienteRepository.findAll().stream().map(ListarPacientesDTOMapper::paraDTO).toList();
     }
 
 

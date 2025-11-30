@@ -10,23 +10,20 @@ import java.util.List;
 public class AlunoDTOMapper {
 
     public static AlunoDTO paraDTO(Aluno aluno){
+        AlunoDTO alunoDTO = new AlunoDTO();
+        alunoDTO.setAlunoId(aluno.getAlunoId());
+        alunoDTO.setNomeAluno(aluno.getNomeAluno());
+        alunoDTO.setMatricula(aluno.getMatricula());
+        alunoDTO.setEmail(aluno.getEmail());
+        alunoDTO.setTelefone(aluno.getTelefone());
+        alunoDTO.setPeriodo(aluno.getPeriodo());
 
-        List<PacienteDTOs> pacienteDTOs = new ArrayList<>();
 
         if (aluno.getPacientes() != null) {
-            pacienteDTOs = aluno.getPacientes().stream().map(PacienteMapper::paraDTO).toList();
+            alunoDTO.setPaciente(aluno.getPacientes().stream().map(PacienteMapper::paraDTO).toList());
         }
 
 
-        return new AlunoDTO(
-                aluno.getAlunoId(),
-                aluno.getNomeAluno(),
-                aluno.getMatricula(),
-                aluno.getEmail(),
-                aluno.getTelefone(),
-                aluno.getPeriodo(),
-                pacienteDTOs
-
-        );
+        return alunoDTO;
     }
 }

@@ -5,11 +5,9 @@ import br.com.dcext.VB_MAPP_Digital.Entities.*;
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.ConsultaDTO;
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.RealizarAtividadeDTO;
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.ResponseConsultaDTO;
-import br.com.dcext.VB_MAPP_Digital.Entities.Enums.PontuacaoVbMapp;
-import br.com.dcext.VB_MAPP_Digital.Mappers.ConsultaMapper;
+import br.com.dcext.VB_MAPP_Digital.Mappers.ResponseConsultaMapper;
 import br.com.dcext.VB_MAPP_Digital.Repositories.*;
 import br.com.dcext.VB_MAPP_Digital.Services.ConsultaService;
-import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,7 +54,7 @@ public class ConsultaServiceImpl implements ConsultaService {
 
 
 
-        return ConsultaMapper.paraDTO(consulta);
+        return ResponseConsultaMapper.paraDTO(consulta);
     }
 
     @Override
@@ -65,7 +63,7 @@ public class ConsultaServiceImpl implements ConsultaService {
 //        return consultaRepository.findAll().stream().map(ConsultaMapper::paraDTO).toList();
 //=======
     public List<ResponseConsultaDTO> listarConsultas() {
-        return consultaRepository.findAll().stream().map(ConsultaMapper::paraDTO).toList();
+        return consultaRepository.findAll().stream().map(ResponseConsultaMapper::paraDTO).toList();
 //>>>>>>> ab51fc45a58beba292c3b21529bce0be9a760b63
     }
 
@@ -88,11 +86,19 @@ public class ConsultaServiceImpl implements ConsultaService {
 
         Consulta consultaSalva = consultaRepository.save(consulta);
 
-        return ConsultaMapper.paraDTO(consultaSalva);
+        return ResponseConsultaMapper.paraDTO(consultaSalva);
     }
 
     @Override
     public Consulta buscarConsulta(Integer consultaId) {
         return consultaRepository.findById(consultaId).orElseThrow();
+    }
+
+    @Override
+    public ResponseConsultaDTO relatorioConsultaId(int consultaId) {
+        Consulta consulta = consultaRepository.findById(consultaId)
+                .orElseThrow(() -> new RuntimeException("Consulta não encontrada."));
+
+        return ResponseConsultaMapper.paraDTO(consulta);
     }
 }
