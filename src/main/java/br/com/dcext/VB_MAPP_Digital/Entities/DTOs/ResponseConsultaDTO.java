@@ -21,5 +21,5 @@ public record ResponseConsultaDTO(int consultaId,
                                   String observacoes,
                                   Date dataConsulta,
                                   Double pontuacaoTotal,
-                                  List<ItemAtividadeRealizado> atividades,
+                                  List<ItemAtividadeRealizadoDTO> atividades,
                                   Relatorio relatorio){}

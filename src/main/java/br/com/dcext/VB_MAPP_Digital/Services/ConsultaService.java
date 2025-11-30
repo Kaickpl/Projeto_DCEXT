@@ -20,4 +20,5 @@ public interface ConsultaService {
 //>>>>>>> ab51fc45a58beba292c3b21529bce0be9a760b63
     ResponseConsultaDTO realizarAtividade(RealizarAtividadeDTO dto);
     Consulta buscarConsulta(Integer consultaId);
+    ResponseConsultaDTO relatorioConsultaId(int consultaId);
 }

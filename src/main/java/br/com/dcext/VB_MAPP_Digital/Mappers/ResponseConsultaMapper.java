@@ -1,11 +1,21 @@
 package br.com.dcext.VB_MAPP_Digital.Mappers;
 
 import br.com.dcext.VB_MAPP_Digital.Entities.Consulta;
+import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.ItemAtividadeRealizadoDTO;
 import br.com.dcext.VB_MAPP_Digital.Entities.DTOs.ResponseConsultaDTO;
 
-public class ConsultaMapper {
+import java.util.List;
+
+public class ResponseConsultaMapper {
 
     public static ResponseConsultaDTO paraDTO(Consulta consulta){
+
+        List<ItemAtividadeRealizadoDTO> atividadeDTO = consulta.getAtividades()
+                .stream()
+                .map(ItemAtividadeRealizadoDTOMapper::paraDTO)
+                .toList();
+
+
         return new ResponseConsultaDTO(
                 consulta.getConsultaId(),
                 consulta.getAluno().getAlunoId(),
@@ -20,7 +30,7 @@ public class ConsultaMapper {
                 consulta.getPaciente().getObservacoes(),
                 consulta.getDataConsulta(),
                 consulta.getPontuacaoTotal(),
-                consulta.getAtividades(),
+                atividadeDTO,
                 consulta.getRelatorio()
         );
     }
