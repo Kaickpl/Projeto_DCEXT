@@ -35,14 +35,15 @@ public class AlunoServiceImpl implements AlunoService {
     }
 
     @Override
-    public boolean deletarAluno(int idAluno) {
+    public boolean deletarAluno(int alunoId) {
 
-        alunoRepository.deleteById(idAluno);
-
-        if (alunoRepository.findById(idAluno) == null) {
-            return true;
+        if (!alunoRepository.existsById(alunoId)) {
+            return false;
         }
-        return false;
+
+        alunoRepository.deleteById(alunoId);
+
+        return !alunoRepository.existsById(alunoId);
     }
 
     @Override
