@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ConsultaRepository extends JpaRepository<Consulta, Integer> {
@@ -18,4 +19,6 @@ public interface ConsultaRepository extends JpaRepository<Consulta, Integer> {
             + " ORDER BY c.dataConsulta DESC"
             )
     public List<Consulta> findConsultasByPacienteId(@Param("pacienteId") Integer pacienteId);
+
+    Optional<Consulta> findTopByPacientePacienteIdOrderByDataConsultaDesc(Integer idPaciente);
 }

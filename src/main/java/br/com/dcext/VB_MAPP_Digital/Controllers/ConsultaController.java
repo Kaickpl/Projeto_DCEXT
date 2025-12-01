@@ -27,8 +27,8 @@ public class ConsultaController {
 //    public ResponseEntity<ResponseConsultaDTO> criarConsulta(@RequestBody ConsultaDTO dto){
 //
 //=======
-    public ResponseEntity<ResponseConsultaDTO> criarConsulta(@PathVariable Integer idPaciente, @RequestBody ConsultaDTO dto){
-        dto.setPacienteId(idPaciente);
+    public ResponseEntity<ResponseConsultaDTO> criarConsulta( @RequestBody ConsultaDTO dto){
+//        dto.setPacienteId(idPaciente);
 
 
 //>>>>>>> ab51fc45a58beba292c3b21529bce0be9a760b63
@@ -51,8 +51,8 @@ public class ConsultaController {
     }
 
 
-    @GetMapping("/relatorio/{consultaId}")
-    public ResponseEntity<ResponseConsultaDTO> relatorioConsulta(@PathVariable int consultaId){
-        return ResponseEntity.ok(consultaService.relatorioConsultaId(consultaId));
+    @GetMapping("/relatorio/{pacienteId}")
+    public ResponseEntity<ResponseConsultaDTO> relatorioConsulta(@PathVariable int pacienteId){
+        return ResponseEntity.ok(consultaService.relatorioConsultaId(pacienteId));
     }
 }

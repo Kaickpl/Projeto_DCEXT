@@ -95,8 +95,8 @@ public class ConsultaServiceImpl implements ConsultaService {
     }
 
     @Override
-    public ResponseConsultaDTO relatorioConsultaId(int consultaId) {
-        Consulta consulta = consultaRepository.findById(consultaId)
+    public ResponseConsultaDTO relatorioConsultaId(int pacienteId) {
+        Consulta consulta = consultaRepository.findTopByPacientePacienteIdOrderByDataConsultaDesc(pacienteId)
                 .orElseThrow(() -> new RuntimeException("Consulta não encontrada."));
 
         return ResponseConsultaMapper.paraDTO(consulta);
